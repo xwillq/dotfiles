@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Reset trials
+# @raycast.mode silent
+
+# Optional parameters:
+# @raycast.icon 🗓️
+
+reset_paddle_trial() {
+	app=$1
+	support_dir=$2
+	preferences=$3
+	paddle_key=$4
+	requires_reboot=$5
+
+	killall "$app" 2>/dev/null
+	was_not_launched=$?
+
+	rm -rf "$support_dir"
+	deleted_support_dir=$?
+
+	plutil -remove "$paddle_key" "$preferences" >/dev/null
+	deleted_paddle_key=$?
+
+	# && ($was_not_launched || $deleted_support_dir || $deleted_paddle_key)
+	# If we changed something and app requires reboot after changing, echo info about reboot
+	if [ $requires_reboot -eq 1 ] && { [ ! $was_not_launched ] || [ $deleted_support_dir ] || [ $deleted_paddle_key ]; }; then
+		echo "Reboot Mac to finish trial reset"
+		return
+	fi
+
+	if [ ! $was_not_launched ]; then
+		sleep 0.5
+		open "/Applications/$app.app"
+	fi
+}
+
+reset_paddle_trial "BetterDummy" \
+	"$HOME/Library/Application Support/BetterDummy" \
+	"$HOME/Library/Preferences/me.waydabber.BetterDummy.plist" \
+	"Paddle-BetterDisplay-762421-SD" \
+	1
+
+reset_paddle_trial "iStatistica Pro" \
+	"$HOME/Library/Containers/imagetasks.iStatistica-Pro/Data/Library/Application Support/iStatistica Pro" \
+	"$HOME/Library/Containers/imagetasks.iStatistica-Pro/Data/Library/Preferences/imagetasks.iStatistica-Pro.plist" \
+	"Paddle-iStatistica Pro-548663-SD" \
+	0
+
+reset_paddle_trial "Lunar" \
+	"$HOME/Library/Application Support/Lunar" \
+	"$HOME/Library/Preferences/fyi.lunar.Lunar.plist" \
+	"Paddle-Lunar-650170-SD" \
+	0
+
+reset_paddle_trial "Multitouch" \
+	"$HOME/Library/Application Support/Multitouch" \
+	"$HOME/Library/Preferences/com.brassmonkery.Multitouch.plist" \
+	"Paddle-Multitouch-525491-SD" \
+	1

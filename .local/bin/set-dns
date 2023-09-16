@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Set up DNS
+# @raycast.mode silent
+
+# Optional parameters:
+# @raycast.icon 🗄️
+
+local service='Wi-Fi'
+local servers=('127.0.0.1' '::1' '1.1.1.1' '1.0.0.1')
+
+local existing_servers=()
+networksetup -getdnsservers "$service" | IFS=$'\n' read -r -d '' -A existing_servers
+ 
+local new_servers=($servers)
+for s in $existing_servers; do
+    if [[ $servers[(Ie)$s] -eq 0 ]]; then
+        new_servers+=("$s")
+    fi
+done
+
+networksetup -setdnsservers "$service" $new_servers
