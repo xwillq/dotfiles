@@ -1,0 +1,61 @@
+#-------------------------------------------------------------------------------
+# General config
+#-------------------------------------------------------------------------------
+
+[user]
+	name = xwillq
+	email = xwillq@pm.me
+	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA+dqDWf4PLv49xDm48WeTZDsoCfPtpDlSS2ijOk4/Bq
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+	allowedSignersFile = /Users/xwillq/.config/git/allowed_signers
+[credential]
+	helper = osxkeychain
+
+
+#-------------------------------------------------------------------------------
+# Output config
+#-------------------------------------------------------------------------------
+
+[format]
+	pretty = medium
+[log]
+	abbrevCommit = true
+	showSignature = true
+[status]
+	submoduleSummary = true
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+[delta]
+	side-by-side = true
+	features = navigate
+	syntax-theme = Dracula
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+[delta "interactive"]
+	keep-plus-minus-markers = false
+
+
+#-------------------------------------------------------------------------------
+# Configuration for repository actions and objects
+#-------------------------------------------------------------------------------
+
+[init]
+	defaultBranch = master
+[pull]
+	rebase = merges
+[merge]
+	ff = false
+[rerere]
+	enabled = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[core]
+	autocrlf = input
