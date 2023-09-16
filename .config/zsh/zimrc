@@ -1,0 +1,72 @@
+#-------------------------------------------------------------------------------
+# Configs
+#-------------------------------------------------------------------------------
+
+zmodule "$XDG_CONFIG_HOME/zsh" --source options.zsh
+zmodule "$XDG_CONFIG_HOME/zsh" --source keybindings.zsh
+zmodule "$XDG_CONFIG_HOME/zsh" --source aliases.zsh
+
+
+#-------------------------------------------------------------------------------
+# Before compinit
+#-------------------------------------------------------------------------------
+
+# Utilities for some other plugins
+zmodule ohmyzsh/ohmyzsh --root lib --source git.zsh
+
+# Init theme
+zmodule romkatv/powerlevel10k
+# Configure theme
+zmodule romkatv/powerlevel10k --cmd '[[ -f "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] && source "$XDG_CONFIG_HOME/zsh/p10k.zsh"'
+zmodule romkatv/powerlevel10k --cmd '[[ -f "$XDG_CONFIG_HOME/zsh/p10k-prompts.zsh" ]] && source "$XDG_CONFIG_HOME/zsh/p10k-prompts.zsh"'
+
+# Completions
+zmodule voronkovich/symfony-complete.plugin.zsh --name symfony-complete
+zmodule ohmyzsh/ohmyzsh --root plugins/golang
+zmodule ohmyzsh/ohmyzsh --root plugins/docker --fpath completions --if '(( ${+commands[docker]} ))'
+zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --if '(( ${+commands[docker]} ))'
+zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --fpath '' --if '(( ${+commands[docker]} ))'
+
+# Set tab and window titles
+zmodule ohmyzsh/ohmyzsh --root lib --source termsupport.zsh
+
+# Colorize man pages, unless `bat` is installed, in that case `bat` will be
+# used as manpager
+zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages --if '(( ! ${+commands[bat]} ))'
+
+# Notify after long running command completion
+zmodule marzocchi/zsh-notify --name notify --if '(( ${+commands[terminal-notifier]} ))'
+
+# Remind about missed aliases
+zmodule MichaelAquilina/zsh-you-should-use
+
+
+#-------------------------------------------------------------------------------
+# Completions and compinit
+#-------------------------------------------------------------------------------
+
+zmodule "$XDG_CONFIG_HOME/zsh" --source completions.zsh
+
+
+#-------------------------------------------------------------------------------
+# After compinit
+#-------------------------------------------------------------------------------
+
+# Completions
+zmodule ohmyzsh/ohmyzsh --root plugins/git
+
+
+# Use `fzf` for tab completions
+# Must be sourced after compinit, but before syntax highlighting
+# and autosuggestions
+zmodule Aloxaf/fzf-tab --if '(( ${+commands[fzf]} ))' 
+zmodule zdharma-continuum/fast-syntax-highlighting
+
+# Use current input for history substring matching
+# Must be sourced after fast-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+
+# Suggest commands with ghost text
+zmodule zsh-users/zsh-autosuggestions
+
+# vim: set filetype=zsh :

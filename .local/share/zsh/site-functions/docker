@@ -1,0 +1,8 @@
+case $1 in
+    ps)
+        command docker ps --format 'table{{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}' "${@:2}"
+        ;;
+    *)
+        command docker "$@"
+        ;;
+esac
