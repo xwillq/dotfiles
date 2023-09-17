@@ -23,18 +23,6 @@ if [[ ! -e "$ZIM_HOME/zimfw.zsh" ]]; then
     unset zim_url
 fi
 
-# TODO: get rid of this script and integrate all of the features into
-# p10k prompt
-if [[ "$TERM_PROGRAM" == 'iTerm.app' ]]; then
-    filename="$XDG_DATA_HOME/zsh/iterm2-shell-integration.zsh"
-    if [[ ! -e "$filename" ]]; then
-        curl -fsSL --create-dirs -o "$filename" https://iterm2.com/shell_integration/zsh
-        chmod a+x "$filename"
-    fi
-    source "$filename"
-    unset filename
-fi
-
 
 #-------------------------------------------------------------------------------
 # Install and compile modules
@@ -90,6 +78,9 @@ zstyle ':fzf-tab:*' switch-group '[' ']'
 # MichaelAquilina/zsh-you-should-use
 YSU_MESSAGE_POSITION='after'
 YSU_IGNORED_ALIASES=('ll' 'la' 'nv' 'vim')
+
+# Enable iterm shell integration in powerlevel10k
+ITERM_SHELL_INTEGRATION_INSTALLED='Yes'
 
 
 #-------------------------------------------------------------------------------
