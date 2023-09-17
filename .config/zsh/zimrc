@@ -67,6 +67,7 @@ zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 
 # Suggest commands with ghost text
+# Must be sources after fast-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
 
 # vim: set filetype=zsh :

@@ -122,6 +122,7 @@ function omz_urlencode() {
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 
 # TODO: move
 if (( ${+commands[zoxide]} )); then
