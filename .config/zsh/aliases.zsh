@@ -54,7 +54,7 @@ if (( ${+commands[phpstan]} || ${+functions[phpstan]} )); then
     alias pstc='phpstan clear-result-cache'
 fi
 
-if (( ${+commands[phpstan]} || ${+functions[phpstan]} )); then
+if (( ${+commands[artisan]} || ${+functions[artisan]} )); then
     alias a='artisan'
 fi
 
