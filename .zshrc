@@ -9,10 +9,10 @@ zstyle ':zim:zmodule' use 'degit'
 
 
 #-------------------------------------------------------------------------------
-# Install Zim and modules
+# Download external scripts
 #-------------------------------------------------------------------------------
 
-# Download zimfw plugin manager if missing.
+# Download zimfw plugin manager
 if [[ ! -e "$ZIM_HOME/zimfw.zsh" ]]; then
     zim_url=https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
     if (( ${+commands[curl]} )); then
@@ -23,18 +23,9 @@ if [[ ! -e "$ZIM_HOME/zimfw.zsh" ]]; then
     unset zim_url
 fi
 
-# Install missing modules, and update $ZIM_HOME/init.zsh if missing or outdated.
-if [[ ! "$ZIM_HOME/init.zsh" -nt "$ZIM_CONFIG_FILE" ]]; then
-    source "$ZIM_HOME/zimfw.zsh" init
-fi
-
-
-#-------------------------------------------------------------------------------
-# Install iTerm2 integration
-#-------------------------------------------------------------------------------
-
+# TODO: get rid of this script and integrate all of the features into
+# p10k prompt
 if [[ "$TERM_PROGRAM" == 'iTerm.app' ]]; then
-    # TODO: compile this file
     filename="$XDG_DATA_HOME/zsh/iterm2-shell-integration.zsh"
     if [[ ! -e "$filename" ]]; then
         curl -fsSL --create-dirs -o "$filename" https://iterm2.com/shell_integration/zsh
@@ -42,6 +33,15 @@ if [[ "$TERM_PROGRAM" == 'iTerm.app' ]]; then
     fi
     source "$filename"
     unset filename
+fi
+
+
+#-------------------------------------------------------------------------------
+# Install and compile modules
+#-------------------------------------------------------------------------------
+
+if [[ ! "$ZIM_HOME/init.zsh" -nt "$ZIM_CONFIG_FILE" ]]; then
+    source "$ZIM_HOME/zimfw.zsh" init
 fi
 
 
@@ -72,11 +72,6 @@ if (( ${+commands[brew]} )); then
     autoload -Uz brew
 fi
 
-# TODO: create scripts for all tools and remove this
-if (( ${+commands[dip]} )); then
-    eval "$(dip console)"
-fi
-
 if (( ${+commands[fzf]} )); then
     source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
     export FZF_CTRL_R_OPTS='--layout=reverse'
@@ -95,10 +90,6 @@ zstyle ':fzf-tab:*' switch-group '[' ']'
 # MichaelAquilina/zsh-you-should-use
 YSU_MESSAGE_POSITION='after'
 YSU_IGNORED_ALIASES=('ll' 'la' 'nv' 'vim')
-
-zstyle ':zim:termtitle' hooks 'precmd' 'preexec'
-zstyle ':zim:termtitle:precmd' format ''
-zstyle ':zim:termtitle:preexec' format '%15<..<%~%<<'
 
 
 #-------------------------------------------------------------------------------
