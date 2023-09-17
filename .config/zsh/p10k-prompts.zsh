@@ -12,6 +12,10 @@ function prompt_docker_compose_status() {
         return
     fi
 
+    if ! docker info 2>/dev/null 1>&2; then
+        return
+    fi
+
     docker_compose_running_services=(${(f)"$(docker compose ps --services --status running)"})
 
     local state
