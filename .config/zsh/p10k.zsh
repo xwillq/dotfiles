@@ -49,7 +49,6 @@
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
-    docker_compose_status
     goenv                   # go environment (https://github.com/syndbg/goenv)
     # go_version            # go version (https://golang.org)
     # rust_version          # rustc version (https://www.rust-lang.org)

@@ -18,7 +18,6 @@ zmodule ohmyzsh/ohmyzsh --root lib --source git.zsh
 zmodule romkatv/powerlevel10k
 # Configure theme
 zmodule romkatv/powerlevel10k --cmd "[[ -f $XDG_CONFIG_HOME/zsh/p10k.zsh ]] && source $XDG_CONFIG_HOME/zsh/p10k.zsh"
-zmodule romkatv/powerlevel10k --cmd "[[ -f $XDG_CONFIG_HOME/zsh/p10k-prompts.zsh ]] && source $XDG_CONFIG_HOME/zsh/p10k-prompts.zsh"
 
 # Completions
 zmodule voronkovich/symfony-complete.plugin.zsh --name symfony-complete
