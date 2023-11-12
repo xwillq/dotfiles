@@ -60,6 +60,7 @@
     # time                  # current time
     # =========================[ Line #2 ]=========================
     newline
+    command_execution_time  # duration of the last command for transient prompt
     # proxy                 # system-wide http/https/ftp proxy
   )
 
@@ -663,7 +664,7 @@
 typeset -g _last_prompt_local_branch
 
 function p10k-on-pre-prompt() {
-  p10k display '1'=show '2'=show
+  p10k display '1'=show '2'=show '2/right/command_execution_time'=hide
 }
 
 function p10k-on-post-prompt() {
@@ -682,6 +683,8 @@ function p10k-on-post-prompt() {
   if [[ $trim_prompt == true ]]; then
     p10k display 'empty_line'=hide '1'=hide
   fi
+
+  p10k display '2/right/command_execution_time'=show
 }
 
 # Tell `p10k configure` which file it should overwrite.
