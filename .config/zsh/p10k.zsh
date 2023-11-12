@@ -635,7 +635,7 @@
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
 
   # Instant prompt mode.
   #
@@ -658,6 +658,30 @@
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload
+}
+
+typeset -g _last_prompt_local_branch
+
+function p10k-on-pre-prompt() {
+  p10k display '1'=show '2'=show
+}
+
+function p10k-on-post-prompt() {
+  local trim_prompt=true
+
+  if [[ $_p9k__cwd != $_p9k__last_prompt_pwd ]]; then
+    _p9k__last_prompt_pwd=$_p9k__cwd
+    trim_prompt=false
+  fi
+
+  if [[ $VCS_STATUS_LOCAL_BRANCH != $_last_prompt_local_branch ]]; then
+    _last_prompt_local_branch=$VCS_STATUS_LOCAL_BRANCH
+    trim_prompt=false
+  fi
+
+  if [[ $trim_prompt == true ]]; then
+    p10k display 'empty_line'=hide '1'=hide
+  fi
 }
 
 # Tell `p10k configure` which file it should overwrite.
