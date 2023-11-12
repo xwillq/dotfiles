@@ -6,7 +6,7 @@ alias ll='ls -l'
 alias la='ls -la'
 
 if (( ${+commands[eza]} )); then
-    alias ls='eza --header --group-directories-first --icons --color-scale --git'
+    alias ls='eza --header --smart-group --group-directories-first --icons --color-scale --git'
 elif (( ${+commands[exa]} )); then
     alias ls='exa --header --group-directories-first --icons --color-scale --git'
 else
