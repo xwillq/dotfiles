@@ -3845,6 +3845,8 @@
 	<false/>
 	<key>StretchTabsToFillBar</key>
 	<true/>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>1</integer>
 	<key>UIElementRequiresHotkeys</key>
 	<true/>
 	<key>UnderlineHyperlinks</key>
