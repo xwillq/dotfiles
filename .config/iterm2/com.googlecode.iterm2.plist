@@ -4,6 +4,8 @@
 <dict>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
+	<key>AllowInteractiveSwipeBetweenTabs</key>
+	<false/>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>AlwaysAcceptFirstMouse</key>
