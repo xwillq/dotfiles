@@ -56,10 +56,6 @@ if (( ${+commands[docker]} )); then
     autoload -Uz docker
 fi
 
-if (( ${+commands[brew]} )); then
-    autoload -Uz brew
-fi
-
 if (( ${+commands[fzf]} )); then
     source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
     export FZF_CTRL_R_OPTS='--layout=reverse'
