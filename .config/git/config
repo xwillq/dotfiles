@@ -14,6 +14,9 @@
 [credential]
 	helper = osxkeychain
 
+[includeIf "gitdir/i:~/Work/**"]
+	path = ~/Work/.gitconfig
+
 
 #-------------------------------------------------------------------------------
 # Output config
@@ -50,12 +53,13 @@
 [pull]
 	rebase = merges
 [merge]
+	autostash = true
 	ff = false
+[rebase]
+	autostash = true
 [rerere]
 	enabled = true
 [commit]
-	gpgsign = true
-[tag]
 	gpgsign = true
 [core]
 	autocrlf = input
