@@ -31,3 +31,10 @@ install-brew-bundle:
 
 dump-brew-bundle:
 	HOMEBREW_NO_AUTO_UPDATE=1 brew bundle dump --file "$(DOTFILES)/Brewfile" --force --all --describe
+
+configure-iterm2:
+	defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$(HOME)/.config/iterm2"
+	defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+
+configure-system-path:
+	$(DOTFILES)/scripts/configure-system-path.sh

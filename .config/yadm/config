@@ -1,3 +1,0 @@
-[yadm]
-	gpg-perms = false
-	cipher = openssl
