@@ -4,7 +4,7 @@ CMD := stow --verbose --dir "$(DOTFILES)"
 STOW := $(CMD) --stow
 UNSTOW := $(CMD) --delete -n
 
-install:
+link:
 	@$(STOW) --target "$(HOME)" zsh
 	@$(STOW) --target "$(HOME)" git
 	@$(STOW) --target "$(HOME)" nvim
@@ -15,7 +15,7 @@ install:
 	@$(STOW) --target "$(HOME)" --no-folding bin
 	@$(STOW) --target "$(HOMEBREW_PREFIX)/etc" dnscrypt-proxy
 
-uninstall:
+unlink:
 	@$(UNSTOW) --target "$(HOME)" zsh
 	@$(UNSTOW) --target "$(HOME)" git
 	@$(UNSTOW) --target "$(HOME)" nvim
@@ -25,3 +25,9 @@ uninstall:
 	@$(UNSTOW) --target "$(HOME)" karabiner
 	@$(UNSTOW) --target "$(HOME)" --no-folding bin
 	@$(UNSTOW) --target "$(HOMEBREW_PREFIX)/etc" dnscrypt-proxy
+
+install-brew-bundle:
+	HOMEBREW_NO_AUTO_UPDATE=1 brew bundle install --file "$(DOTFILES)/Brewfile" --no-lock
+
+dump-brew-bundle:
+	HOMEBREW_NO_AUTO_UPDATE=1 brew bundle dump --file "$(DOTFILES)/Brewfile" --force --all --describe
