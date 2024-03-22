@@ -99,10 +99,14 @@ end
 ---Get module, that called current function
 ---@return string
 local function get_caller_module()
-    local nvim_config_path = vim.fn.environ()["MYVIMRC"]:gsub("init%.lua$", "")
-    local relative_caller_path = debug.getinfo(3, "S")["short_src"]:gsub(nvim_config_path, "")
+    local caller_path = debug.getinfo(3)["short_src"]
+    local runtime_paths = vim.api.nvim_list_runtime_paths()
 
-    return relative_caller_path:gsub("lua/", ""):gsub("%.lua$", ""):gsub("/", ".")
+    for k, path in pairs(runtime_paths) do
+        if caller_path:find(path) == 1 then
+            return caller_path:gsub(string.format("^%s/lua/", path), "") :gsub("%.lua$", "") :gsub("/", ".")
+        end
+    end
 end
 
 ---Build callback for opts in lazy plugin spec
