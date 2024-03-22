@@ -10,6 +10,12 @@
 	<true/>
 	<key>AlwaysAcceptFirstMouse</key>
 	<false/>
+	<key>BracketedPasteMode</key>
+	<true/>
+	<key>CheckTestRelease</key>
+	<true/>
+	<key>ConvertDosNewlines</key>
+	<true/>
 	<key>CopySelection</key>
 	<false/>
 	<key>Custom Color Presets</key>
@@ -392,10 +398,12 @@
 	<true/>
 	<key>EnableUnderlineSemanticHistoryOnCmdHover</key>
 	<true/>
+	<key>EscapeShellCharsWithBackslash</key>
+	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideFromDockAndAppSwitcher</key>
-	<true/>
+	<false/>
 	<key>HideMenuBarInFullscreen</key>
 	<false/>
 	<key>HideTabNumber</key>
@@ -410,6 +418,8 @@
 	<integer>100</integer>
 	<key>JiggleTTYSizeOnClearBuffer</key>
 	<true/>
+	<key>LanguageAgnosticKeyBindings</key>
+	<false/>
 	<key>NaturalScrollingAffectsHorizontalMouseReporting</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -2099,7 +2109,7 @@
 			<key>Use Underline Color (Light)</key>
 			<false/>
 			<key>Use libtickit protocol</key>
-			<true/>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -3096,7 +3106,7 @@
 			<key>HotKey Window Dock Click Action</key>
 			<integer>0</integer>
 			<key>HotKey Window Floats</key>
-			<true/>
+			<false/>
 			<key>HotKey Window Reopens On Activation</key>
 			<true/>
 			<key>Idle Code</key>
@@ -3613,9 +3623,9 @@
 			<key>Rows</key>
 			<integer>25</integer>
 			<key>Screen</key>
-			<integer>-1</integer>
+			<integer>-2</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>0</integer>
 			<key>Scrollback With Status Bar</key>
 			<false/>
 			<key>Scrollback in Alternate Screen</key>
@@ -3797,7 +3807,7 @@
 			<key>Use Underline Color</key>
 			<false/>
 			<key>Use libtickit protocol</key>
-			<true/>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -3812,6 +3822,12 @@
 	<false/>
 	<key>OpenFileInNewWindows</key>
 	<true/>
+	<key>PasteSpecialRegex</key>
+	<string></string>
+	<key>PasteSpecialSubstitution</key>
+	<string></string>
+	<key>PasteSpecialUseRegexSubstitution</key>
+	<false/>
 	<key>PinchToChangeFontSizeDisabled</key>
 	<true/>
 	<key>PointerActions</key>
@@ -3837,6 +3853,8 @@
 	<true/>
 	<key>RequireCmdForDraggingText</key>
 	<true/>
+	<key>ShowFullScreenTabBar</key>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>

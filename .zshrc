@@ -56,11 +56,6 @@ if (( ${+commands[docker]} )); then
     autoload -Uz docker
 fi
 
-if (( ${+commands[fzf]} )); then
-    source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
-    export FZF_CTRL_R_OPTS='--layout=reverse'
-fi
-
 
 #-------------------------------------------------------------------------------
 # Module configuration
@@ -103,6 +98,9 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=green,fg=white,bold'
 compdef _symfony_complete artisan
 compdef _symfony_complete composer
 compdef _symfony_complete phpstan
+compdef _symfony_complete rector
+
+compdef _gnu_generic phpunit
 
 # ohmyzsh/ohmyzsh/lib/termsupport.zsh
 ZSH_THEME_TERM_TAB_TITLE_IDLE=
@@ -131,4 +129,12 @@ if (( ${+commands[zoxide]} )); then
     # TODO: Change fzf config
     source $filename
     unset filename
+
+    autoload -Uz cd
+    autoload -Uz cdi
+fi
+
+if (( ${+commands[fzf]} )); then
+    source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+    export FZF_CTRL_R_OPTS='--layout=reverse'
 fi

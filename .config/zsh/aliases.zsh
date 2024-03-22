@@ -49,13 +49,17 @@ fi
 # PHP projects
 #-------------------------------------------------------------------------------
 
+# if (( ${+commands[php]} || ${+functions[php]} )); then
+#     alias artisan='php artisan'
+# fi
+
+if (( ${+commands[artisan]} || ${+function[artisan]} || ${+aliases[artisan]} )); then
+    alias a='artisan'
+fi
+
 if (( ${+commands[phpstan]} || ${+functions[phpstan]} )); then
     alias psta='phpstan analyse'
     alias pstc='phpstan clear-result-cache'
-fi
-
-if (( ${+commands[artisan]} || ${+functions[artisan]} )); then
-    alias a='artisan'
 fi
 
 if (( ${+commands[composer]} || ${+functions[composer]} )); then

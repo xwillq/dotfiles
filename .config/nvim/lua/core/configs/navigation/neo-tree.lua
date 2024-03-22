@@ -111,6 +111,7 @@ return {
             },
             -- Same as previous, but using glob patterns
             hide_by_pattern = {
+                "*.zwc",
             },
             -- Exclude files from hide_by_name and hide_by_pattern
             always_show = {

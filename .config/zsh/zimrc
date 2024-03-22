@@ -22,9 +22,9 @@ zmodule romkatv/powerlevel10k --cmd "[[ -f $XDG_CONFIG_HOME/zsh/p10k.zsh ]] && s
 # Completions
 zmodule voronkovich/symfony-complete.plugin.zsh --name symfony-complete
 zmodule ohmyzsh/ohmyzsh --root plugins/golang
-zmodule ohmyzsh/ohmyzsh --root plugins/docker --fpath completions --if '(( ${+commands[docker]} ))'
-zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --if '(( ${+commands[docker]} ))'
-zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --fpath '' --if '(( ${+commands[docker]} ))'
+zmodule ohmyzsh/ohmyzsh --root plugins/docker --fpath completions --if-command docker
+zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --if-command docker
+zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --fpath '' --if-command docker
 
 # Set tab and window titles
 zmodule ohmyzsh/ohmyzsh --root lib --source termsupport.zsh
@@ -34,7 +34,7 @@ zmodule ohmyzsh/ohmyzsh --root lib --source termsupport.zsh
 zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages --if '(( ! ${+commands[bat]} ))'
 
 # Notify after long running command completion
-zmodule marzocchi/zsh-notify --name notify --if '(( ${+commands[terminal-notifier]} ))'
+zmodule marzocchi/zsh-notify --name notify --if-command terminal-notifier
 
 # Remind about missed aliases
 zmodule MichaelAquilina/zsh-you-should-use
@@ -58,7 +58,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/git
 # Use `fzf` for tab completions
 # Must be sourced after compinit, but before syntax highlighting
 # and autosuggestions
-zmodule Aloxaf/fzf-tab --if '(( ${+commands[fzf]} ))' 
+zmodule Aloxaf/fzf-tab --if-command fzf
 zmodule zdharma-continuum/fast-syntax-highlighting
 
 # Use current input for history substring matching
