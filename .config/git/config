@@ -23,10 +23,11 @@
 #-------------------------------------------------------------------------------
 
 [format]
-	pretty = medium
+	pretty = short
 [log]
 	abbrevCommit = true
 	showSignature = true
+	date = format-local:%H:%M %d.%m.%Y
 [status]
 	submoduleSummary = true
 [pager]
