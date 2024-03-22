@@ -1,21 +1,15 @@
 DOTFILES := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-STOW := stow --verbose --dir "$(DOTFILES)" --target "$(HOME)" --dotfiles
 
-install: init
-	$(STOW) --stow .
+CMD := stow --verbose --dir "$(DOTFILES)"
+STOW := $(CMD) --stow
 
-uninstall:
-	$(STOW) --delete .
-
-init: create-dirs
-
-create-dirs: iterm2 karabiner bin zsh
-
-iterm2 karabiner:
-	mkdir -p $(HOME)/.config/$@
-
-bin:
-	mkdir -p $(HOME)/.local/bin
-
-zsh:
-	mkdir -p $(HOME)/.local/share/zsh
+install:
+	@$(STOW) --target "$(HOME)" zsh
+	@$(STOW) --target "$(HOME)" git
+	@$(STOW) --target "$(HOME)" nvim
+	@$(STOW) --target "$(HOME)" iterm2
+	@$(STOW) --target "$(HOME)" bat
+	@$(STOW) --target "$(HOME)" ranger
+	@$(STOW) --target "$(HOME)" karabiner
+	@$(STOW) --target "$(HOME)" --no-folding bin
+	@$(STOW) --target "$(HOMEBREW_PREFIX)/etc" dnscrypt-proxy
