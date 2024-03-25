@@ -18,6 +18,9 @@
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
+
+
+
 () {
   emulate -L zsh -o extended_glob
 
@@ -27,6 +30,9 @@
 
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
+
+  # Enable iTerm2 integration
+  typeset -g ITERM_SHELL_INTEGRATION_INSTALLED='Yes'
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(

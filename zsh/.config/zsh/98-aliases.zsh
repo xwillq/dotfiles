@@ -1,5 +1,85 @@
+# Alias definitions are done at the last moment, when all functions and
+# programs exist and are discoverable. This makes it possible to check if
+# program exists before defining alias for it.
+#
+# Sometimes `${aliases[<existing alias>]}` is used in order to make new alias
+# "inherit" value of `existing alias`, while "erasing" this inheritance
+# from output of `alias`. This makes searching for aliases easier.
+
 #-------------------------------------------------------------------------------
-# ls -> eza/exa
+# git
+#-------------------------------------------------------------------------------
+
+alias g="git"
+
+# Remote repositories
+alias gl="${aliases[g]} pull"
+alias gf="${aliases[g]} fetch"
+alias gfp="${aliases[gf]} --prune"
+alias gp="${aliases[g]} push"
+alias gpf="${aliases[gp]} --force-with-lease --force-if-includes"
+alias gpsup="${aliases[gp]} --set-upstream origin \$(git branch --show-current)"
+alias gpfsup="${aliases[gpf]} --set-upstream origin \$(git branch --show-current)"
+
+# Local changes
+alias gst="${aliases[g]} status"
+alias ga="${aliases[g]} add"
+alias gc="${aliases[g]} commit"
+alias gd="${aliases[g]} diff"
+
+# Stash
+alias gsta="${aliases[g]} stash push"
+alias gstu="${aliases[gsta]} --include-untracked"
+alias gstp="${aliases[g]} stash pop"
+alias gstaa="${aliases[g]} stash apply"
+alias gstd="${aliases[g]} stash drop"
+alias gstl="${aliases[g]} stash list"
+alias gsts="${aliases[g]} stash show --include-untracked"
+
+# Branch operations
+alias gsw="${aliases[g]} switch"
+alias gswc="${aliases[gsw]} --create"
+alias gswC="${aliases[gsw]} --force-create"
+alias gb="${aliases[g]} branch"
+
+# Reset
+alias grh="${aliases[g]} reset"
+alias grhs="${aliases[grh]} --soft"
+alias grhh="${aliases[grh]} --hard"
+
+# Rebase
+alias grb="${aliases[g]} rebase"
+alias grba="${aliases[grb]} --abort"
+alias grbc="${aliases[grb]} --continue"
+alias grbi="${aliases[grb]} --interactive"
+alias grbo="${aliases[grb]} --onto"
+alias grbs="${aliases[grb]} --skip"
+
+# Merge
+alias gm="${aliases[g]} merge"
+alias gma="${aliases[gm]} --abort"
+
+# Log
+alias glg="${aliases[g]} log"
+alias glga="${aliases[glg]} --all"
+alias glgg="${aliases[glg]} --graph"
+alias glgga="${aliases[glgg]} --all"
+
+
+#-------------------------------------------------------------------------------
+# docker
+#-------------------------------------------------------------------------------
+
+alias dco='docker compose'
+alias dcup='dco up'
+alias dcupd='dcup -d'
+alias dcdn='dco down'
+alias dcl='dco logs'
+alias dce='dco exec'
+
+
+#-------------------------------------------------------------------------------
+# ls/eza/exa
 #-------------------------------------------------------------------------------
 
 alias ll='ls -l'
@@ -16,7 +96,7 @@ fi
 
 
 #-------------------------------------------------------------------------------
-# bat
+# bat/cat/less
 #-------------------------------------------------------------------------------
 
 if (( ${+commands[bat]} )); then
@@ -36,7 +116,7 @@ fi
 
 
 #-------------------------------------------------------------------------------
-# neovim
+# neovim/vim
 #-------------------------------------------------------------------------------
 
 if (( ${+commands[nvim]} )); then
