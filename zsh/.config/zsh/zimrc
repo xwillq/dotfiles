@@ -1,64 +1,51 @@
 #-------------------------------------------------------------------------------
-# Configs
+# Indifferent to compinit
 #-------------------------------------------------------------------------------
 
-zmodule "$XDG_CONFIG_HOME/zsh" --source options.zsh
-zmodule "$XDG_CONFIG_HOME/zsh" --source keybindings.zsh
-zmodule "$XDG_CONFIG_HOME/zsh" --source aliases.zsh
+zmodule romkatv/powerlevel10k
+
+# Notify after long running command completion
+zmodule marzocchi/zsh-notify --name notify --if-command terminal-notifier
+
+# Colorize man pages. If bat is installed, it will be used as man pager,
+# so this plugin is not loaded.
+zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages --if '(( ! ${+commands[bat]} ))'
+
+# Set tab and window titles
+zmodule termtitle
 
 
 #-------------------------------------------------------------------------------
 # Before compinit
 #-------------------------------------------------------------------------------
 
-# Utilities for some other plugins
-zmodule ohmyzsh/ohmyzsh --root lib --source git.zsh
-
-# Init theme
-zmodule romkatv/powerlevel10k
-# Configure theme
-zmodule romkatv/powerlevel10k --cmd "[[ -f $XDG_CONFIG_HOME/zsh/p10k.zsh ]] && source $XDG_CONFIG_HOME/zsh/p10k.zsh"
+# Completions for php commands based on symfony libs
+zmodule voronkovich/symfony-complete.plugin.zsh --name symfony-complete
 
 # Completions
-zmodule voronkovich/symfony-complete.plugin.zsh --name symfony-complete
-zmodule ohmyzsh/ohmyzsh --root plugins/golang
-zmodule ohmyzsh/ohmyzsh --root plugins/docker --fpath completions --if-command docker
-zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --if-command docker
-zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --fpath '' --if-command docker
-
-# Set tab and window titles
-zmodule ohmyzsh/ohmyzsh --root lib --source termsupport.zsh
-
-# Colorize man pages, unless `bat` is installed, in that case `bat` will be
-# used as manpager
-zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages --if '(( ! ${+commands[bat]} ))'
-
-# Notify after long running command completion
-zmodule marzocchi/zsh-notify --name notify --if-command terminal-notifier
-
-# Remind about missed aliases
-zmodule MichaelAquilina/zsh-you-should-use
+# zmodule ohmyzsh/ohmyzsh --root plugins/golang
+# zmodule ohmyzsh/ohmyzsh --root plugins/docker --fpath completions --if-command docker
+# zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --if-command docker
+# zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --fpath '' --if-command docker
 
 
 #-------------------------------------------------------------------------------
-# Completions and compinit
+# Completions
 #-------------------------------------------------------------------------------
+# Compinit script is sourced by zim because some plugins must be sourced 
+# before compinit, and some after.
 
-zmodule "$XDG_CONFIG_HOME/zsh" --source completions.zsh
+zmodule "$XDG_CONFIG_HOME/zsh/compinit"
 
 
 #-------------------------------------------------------------------------------
 # After compinit
 #-------------------------------------------------------------------------------
 
-# Completions
-zmodule ohmyzsh/ohmyzsh --root plugins/git
-
-
 # Use `fzf` for tab completions
-# Must be sourced after compinit, but before syntax highlighting
-# and autosuggestions
+# Must be sourced before syntax highlighting and autosuggestions
 zmodule Aloxaf/fzf-tab --if-command fzf
+
 zmodule zdharma-continuum/fast-syntax-highlighting
 
 # Use current input for history substring matching

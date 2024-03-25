@@ -38,3 +38,6 @@ configure-iterm2:
 
 configure-system-path:
 	$(DOTFILES)/scripts/configure-system-path.sh
+
+install-completions:
+	$(DOTFILES)/scripts/install-completions.zsh "$(HOME)/.local/state/zsh/functions"
