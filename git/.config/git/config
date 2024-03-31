@@ -54,11 +54,12 @@
 [pull]
 	rebase = merges
 [merge]
-	autostash = true
+	autoStash = true
 	ff = false
 	suppressDest = ''
 [rebase]
-	autostash = true
+	autoStash = true
+	autoSquash = true
 [rerere]
 	enabled = true
 [commit]
