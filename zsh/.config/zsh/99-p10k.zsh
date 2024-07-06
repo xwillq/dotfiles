@@ -61,6 +61,7 @@
     vim_shell               # vim shell indicator (:sh)
     vpn_ip                  # virtual private network indicator
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
+    xdebug_trigger          # whether XDEBUG_TRIGGER is set
     # time                  # current time
     # =========================[ Line #2 ]=========================
     newline
@@ -706,6 +707,12 @@ function p10k-on-post-prompt() {
   fi
 
   p10k display '2/right/command_execution_time'=show
+}
+
+function prompt_xdebug_trigger() {
+  if [[ $parameters[XDEBUG_TRIGGER] =~ 'export' ]]; then
+    p10k segment -t '' -f 70
+  fi
 }
 
 # Tell `p10k configure` which file it should overwrite.
