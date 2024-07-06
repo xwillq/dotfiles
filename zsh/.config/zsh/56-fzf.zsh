@@ -6,7 +6,15 @@ fi
 # Configure fzf
 #-------------------------------------------------------------------------------
 
-export FZF_DEFAULT_OPTS="--no-separator --color=dark,fg:-1,fg+:-1,bg:-1,bg+:-1,hl:#5fff87,hl+:#ffaf5f,info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7,separator:bold"
+# Material darker
+export FZF_DEFAULT_OPTS="--no-separator --color="\
+"bg:-1,bg+:#303030,gutter:-1,"\
+"fg:-1,fg+:#eeffff,"\
+"hl:#82aaff,hl+:#82aaff,"\
+"spinner:#89ddff,"\
+"header:#82aaff,info:#ffcb6b,pointer:#89ddff,"\
+"marker:#89ddff,prompt:#ffcb6b"
+
 export FZF_CTRL_R_OPTS='--layout=reverse'
 
 
