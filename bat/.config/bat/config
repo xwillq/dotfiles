@@ -1,3 +1,4 @@
---theme="Dracula"
---map-syntax conf:ini
+--theme="MaterialDarker"
+
+# Set the tab width
 --tabs=4
