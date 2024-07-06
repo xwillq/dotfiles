@@ -1,0 +1,70 @@
+---@alias OptsCallback fun(self: LazyPlugin, opts: table):table?
+---@alias KeysCallback fun(self: LazyPlugin, keys: string[]):(string|LazyKeys)[]
+
+local M = {}
+
+---Normalize plugin name
+---@param name string
+---@return string
+function M.normalize_name(name)
+    local normalized, _ = name:lower():gsub('^n?vim%-', ''):gsub('%.n?vim$', ''):gsub('%.lua', ''):gsub('%.', '-')
+    return normalized
+end
+
+---Get module that called current function
+---@return string|nil
+local function get_caller_module()
+    local info = debug.getinfo(3)
+    if info == nil then
+        return nil
+    end
+
+    local caller_path = info['short_src']
+
+    local module = nil
+    for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+        if caller_path:find(path, 1, true) == 1 then
+            module, _ = caller_path
+                :gsub(string.format('^%s/lua/', path):gsub('%-', '%%-'), '')
+                :gsub('%.lua$', '')
+                :gsub('/', '.')
+            break
+        end
+    end
+
+    return module
+end
+
+---Build callback for opts and keys in lazy plugin spec
+---@param module string Location of plugin config/keymaps
+---@return OptsCallback|KeysCallback
+local function lazy_callback(module)
+    return function(plugin, prev)
+        module = module .. '.' .. M.normalize_name(plugin.name)
+        local success, new_values = pcall(require, module)
+        if success then
+            return vim.tbl_deep_extend('force', prev, new_values)
+        else
+            vim.notify(string.format("Couldn't load module %s", module), vim.log.levels.WARN)
+            return prev
+        end
+    end
+end
+
+---Build callback for opts in lazy plugin spec
+---@return OptsCallback
+function M.lazy_opts()
+    local caller = get_caller_module()
+    local module = caller:gsub('plugins', 'configs')
+    return lazy_callback(module) --[[@as OptsCallback]]
+end
+
+---Build callback for keys in lazy plugin spec
+---@return KeysCallback
+function M.lazy_keys()
+    local caller = get_caller_module()
+    local module = caller:gsub('plugins', 'keymaps')
+    return lazy_callback(module) --[[@as KeysCallback]]
+end
+
+return M
