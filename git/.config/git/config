@@ -49,8 +49,6 @@
 # Configuration for repository actions and objects
 #-------------------------------------------------------------------------------
 
-[init]
-	defaultBranch = master
 [pull]
 	rebase = merges
 [merge]
