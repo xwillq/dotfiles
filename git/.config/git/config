@@ -38,7 +38,7 @@
 [delta]
 	side-by-side = true
 	features = navigate
-	syntax-theme = Dracula
+	syntax-theme = MaterialDarker
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [delta "interactive"]
