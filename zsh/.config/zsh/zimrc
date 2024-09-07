@@ -24,9 +24,6 @@ zmodule voronkovich/symfony-complete.plugin.zsh --name symfony-complete
 
 # Completions
 # zmodule ohmyzsh/ohmyzsh --root plugins/golang
-# zmodule ohmyzsh/ohmyzsh --root plugins/docker --fpath completions --if-command docker
-# zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --if-command docker
-# zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose --fpath '' --if-command docker
 
 
 #-------------------------------------------------------------------------------
