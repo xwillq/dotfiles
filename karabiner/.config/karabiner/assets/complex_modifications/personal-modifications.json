@@ -1,1037 +1,1016 @@
 {
-	"title": "Personal modifications",
-	"rules": [
-		{
-			"description": "H/J/K/L as arrows in Vim mode",
-			"manipulators": [
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "h",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_arrow"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "j",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "down_arrow"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "k",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "up_arrow"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "l",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "right_arrow"
-						}
-					],
-					"type": "basic"
-				}
-			]
-		},
-		{
-			"description": "S/D/F as ⇧/⌥/⌘ in Vim mode",
-			"manipulators": [
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "s",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "right_shift"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "d",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_option"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "f",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_command"
-						}
-					],
-					"type": "basic"
-				}
-			]
-		},
-		{
-			"description": "S/D/F as ⇧/⌃/⌥ in Vim mode",
-			"manipulators": [
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "s",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "right_shift"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "d",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_control"
-						}
-					],
-					"type": "basic"
-				},
-				{
-					"conditions": [
-						{
-							"name": "vim mode",
-							"type": "variable_if",
-							"value": 1
-						}
-					],
-					"from": {
-						"key_code": "f",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_option"
-						}
-					],
-					"type": "basic"
-				}
-			]
-		},
-		{
-			"description": "Caps sets Vim mode & caps to escape",
-			"manipulators": [
-				{
-					"from": {
-						"key_code": "caps_lock",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "vim mode",
-								"value": 1
-							}
-						}
-					],
-					"to_after_key_up": [
-						{
-							"set_variable": {
-								"name": "vim mode",
-								"value": 0
-							}
-						}
-					],
-					"to_if_alone": [
-						{
-							"key_code": "escape"
-						}
-					],
-					"type": "basic"
-				}
-			]
-		},
-		{
-			"description": "Caps to escape",
-			"manipulators": [
-				{
-					"from": {
-						"key_code": "caps_lock",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "escape"
-						}
-					],
-					"type": "basic"
-				}
-			]
-		},
-		{
-			"description": "Caps to ",
-			"manipulators": [
-				{
-					"from": {
-						"key_code": "caps_lock",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "f17"
-						}
-					],
-					"type": "basic"
-				}
-			]
-		},
-		{
-			"description": "Both shifts to caps lock",
-			"manipulators": [
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "left_shift",
-						"modifiers": {
-							"mandatory": [
-								"right_shift"
-							],
-							"optional": [
-								"caps_lock"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "caps_lock"
-						}
-					],
-					"to_if_alone": [
-						{
-							"key_code": "left_shift"
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "right_shift",
-						"modifiers": {
-							"mandatory": [
-								"left_shift"
-							],
-							"optional": [
-								"caps_lock"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "caps_lock"
-						}
-					],
-					"to_if_alone": [
-						{
-							"key_code": "right_shift"
-						}
-					]
-				}
-			]
-		},
-		{
-			"description": "Fn+h/j/k/l as Vim arrows && Fn+a/s/d as ⇧/⌥/⌘",
-			"manipulators": [
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "j",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "down_arrow"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "j"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "down_arrow"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "k",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "up_arrow"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "k"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "up_arrow"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "h",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_arrow"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "h"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "left_arrow"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "l",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "right_arrow"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "l"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "right_arrow"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "a",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_shift"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "a"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "left_shift"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "s",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_option"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "s"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "left_option"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "d",
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "left_command"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "simple_vi_mode",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"simultaneous": [
-							{
-								"key_code": "fn"
-							},
-							{
-								"key_code": "d"
-							}
-						],
-						"simultaneous_options": {
-							"key_down_order": "strict",
-							"key_up_order": "strict_inverse",
-							"to_after_key_up": [
-								{
-									"set_variable": {
-										"name": "simple_vi_mode",
-										"value": 0
-									}
-								}
-							]
-						},
-						"modifiers": {
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "simple_vi_mode",
-								"value": 1
-							}
-						},
-						{
-							"key_code": "left_command"
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 10000
-					}
-				}
-			]
-		},
-		{
-			"description": "Cmd + brightness -> keyboard brightness",
-			"manipulators": [
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f1",
-						"modifiers": {
-							"mandatory": [
-								"fn",
-								"command"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_top_case_key_code": "illumination_down"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f1",
-						"modifiers": {
-							"mandatory": [
-								"command"
-							],
-							"optional": [
-								"caps_lock",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_top_case_key_code": "illumination_down"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f2",
-						"modifiers": {
-							"mandatory": [
-								"fn",
-								"command"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_top_case_key_code": "illumination_up"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f2",
-						"modifiers": {
-							"mandatory": [
-								"command"
-							],
-							"optional": [
-								"caps_lock",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_top_case_key_code": "illumination_up"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				}
-			]
-		},
-		{
-			"description": "Spotlight -> Cmd + space",
-			"manipulators": [
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f4",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "spacebar",
-							"modifiers": [
-								"right_command"
-							]
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f4",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "spacebar",
-							"modifiers": [
-								"right_command"
-							]
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				}
-			]
-		}
-	]
+    "title": "Personal modifications",
+    "rules": [
+        {
+            "description": "H/J/K/L as arrows in Vim mode",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "h",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_arrow"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "j",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "down_arrow"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "k",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "up_arrow"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "l",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_arrow"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "S/D/F as ⇧/⌥/⌘ in Vim mode",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "s",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_shift"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "d",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_option"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "f",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_command"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "S/D/F as ⇧/⌃/⌥ in Vim mode",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "s",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_shift"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "d",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_control"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "name": "vim mode",
+                            "type": "variable_if",
+                            "value": 1
+                        }
+                    ],
+                    "from": {
+                        "key_code": "f",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_option"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "Caps sets Vim mode & caps to escape",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "caps_lock",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "vim mode",
+                                "value": 1
+                            }
+                        }
+                    ],
+                    "to_after_key_up": [
+                        {
+                            "set_variable": {
+                                "name": "vim mode",
+                                "value": 0
+                            }
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "escape"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "Caps to escape",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "caps_lock",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "escape"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "Both shifts to caps lock",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "left_shift",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_shift"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "caps_lock"
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "left_shift"
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "right_shift",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_shift"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "caps_lock"
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "right_shift"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Fn+h/j/k/l as Vim arrows && Fn+a/s/d as ⇧/⌥/⌘",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "j",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "down_arrow"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "j"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "down_arrow"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "k",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "up_arrow"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "k"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "up_arrow"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_arrow"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "h"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "left_arrow"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "l",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_arrow"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "l"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "right_arrow"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "a",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_shift"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "a"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "left_shift"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "s",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_option"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "s"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "left_option"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "d",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_command"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "simple_vi_mode",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "simultaneous": [
+                            {
+                                "key_code": "fn"
+                            },
+                            {
+                                "key_code": "d"
+                            }
+                        ],
+                        "simultaneous_options": {
+                            "key_down_order": "strict",
+                            "key_up_order": "strict_inverse",
+                            "to_after_key_up": [
+                                {
+                                    "set_variable": {
+                                        "name": "simple_vi_mode",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        },
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "simple_vi_mode",
+                                "value": 1
+                            }
+                        },
+                        {
+                            "key_code": "left_command"
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 10000
+                    }
+                }
+            ]
+        },
+        {
+            "description": "Cmd + brightness -> keyboard brightness",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f1",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn",
+                                "command"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_top_case_key_code": "illumination_down"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f1",
+                        "modifiers": {
+                            "mandatory": [
+                                "command"
+                            ],
+                            "optional": [
+                                "caps_lock",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_top_case_key_code": "illumination_down"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f2",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn",
+                                "command"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_top_case_key_code": "illumination_up"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f2",
+                        "modifiers": {
+                            "mandatory": [
+                                "command"
+                            ],
+                            "optional": [
+                                "caps_lock",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_top_case_key_code": "illumination_up"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Spotlight -> Cmd + space",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f4",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "spacebar",
+                            "modifiers": [
+                                "right_command"
+                            ]
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f4",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "spacebar",
+                            "modifiers": [
+                                "right_command"
+                            ]
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

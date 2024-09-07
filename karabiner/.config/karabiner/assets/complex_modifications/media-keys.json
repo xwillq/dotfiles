@@ -1,709 +1,709 @@
 {
-	"title": "Media key handlers",
-	"rules": [
-		{
-			"description": "Fn + Escape -> toggle function/media keys",
-			"manipulators": [
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "escape",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "function_keys",
-								"value": 1
-							}
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 2000
-					}
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "escape",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							]
-						}
-					},
-					"to": [
-						{
-							"set_variable": {
-								"name": "function_keys",
-								"value": 0
-							}
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					],
-					"parameters": {
-						"basic.simultaneous_threshold_milliseconds": 2000
-					}
-				}
-			]
-		},
-		{
-			"description": "Conditional F-keys (F-keys/media keys, F6/F16)",
-			"manipulators": [
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f1",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_decrement"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f1",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_decrement"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f2",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_increment"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f2",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "display_brightness_increment"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f3",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "mission_control"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f3",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "mission_control"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f4",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "spotlight"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f4",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"apple_vendor_keyboard_key_code": "spotlight"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f5",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "dictation"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f5",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "dictation"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f6",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "f16"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f6",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"key_code": "f16"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f7",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "rewind"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f7",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "rewind"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f8",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "play_or_pause"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f8",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "play_or_pause"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f9",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "fast_forward"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f9",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "fast_forward"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f10",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "mute"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f10",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "mute"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f11",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_decrement"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f11",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_decrement"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f12",
-						"modifiers": {
-							"mandatory": [
-								"fn"
-							],
-							"optional": [
-								"any"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_increment"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 1
-						}
-					]
-				},
-				{
-					"type": "basic",
-					"from": {
-						"key_code": "f12",
-						"modifiers": {
-							"optional": [
-								"caps_lock",
-								"command",
-								"control",
-								"option",
-								"shift"
-							]
-						}
-					},
-					"to": [
-						{
-							"consumer_key_code": "volume_increment"
-						}
-					],
-					"conditions": [
-						{
-							"type": "variable_if",
-							"name": "function_keys",
-							"value": 0
-						}
-					]
-				}
-			]
-		}
-	]
+    "title": "Media key handlers",
+    "rules": [
+        {
+            "description": "Fn + Escape -> toggle function/media keys",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "escape",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "function_keys",
+                                "value": 1
+                            }
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 2000
+                    }
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "escape",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "function_keys",
+                                "value": 0
+                            }
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ],
+                    "parameters": {
+                        "basic.simultaneous_threshold_milliseconds": 2000
+                    }
+                }
+            ]
+        },
+        {
+            "description": "Conditional F-keys (F-keys/media keys, F6/F16)",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f1",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_decrement"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f1",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_decrement"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f2",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_increment"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f2",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_increment"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f3",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "mission_control"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f3",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "mission_control"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f4",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "spotlight"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f4",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "spotlight"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f5",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "dictation"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f5",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "dictation"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f6",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "f16"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f6",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "f16"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f7",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "rewind"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f7",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "rewind"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f8",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "play_or_pause"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f8",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "play_or_pause"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f9",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "fast_forward"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f9",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "fast_forward"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f10",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "mute"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f10",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "mute"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f11",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_decrement"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f11",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_decrement"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f12",
+                        "modifiers": {
+                            "mandatory": [
+                                "fn"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_increment"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f12",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock",
+                                "command",
+                                "control",
+                                "option",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_increment"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "function_keys",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
