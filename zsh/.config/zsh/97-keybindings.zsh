@@ -28,6 +28,11 @@ fi
 
 bindkey '^Xh' _complete_help
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+
 #-------------------------------------------------------------------------------
 # Keybindings from oh-my-zsh
 #-------------------------------------------------------------------------------
