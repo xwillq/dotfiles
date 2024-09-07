@@ -15,11 +15,14 @@ alias g="git"
 # Information about changes
 alias gst="${aliases[g]} status"
 alias gd="${aliases[g]} diff"
+alias gds="${aliases[gd]} --staged"
 
 # Commit & commit preparation
 alias ga="${aliases[g]} add"
 alias grs="${aliases[g]} restore" # Mnemonic: [g]it [r]e[s]tore
 alias grst="${aliases[grs]} --staged" # Mnemonic: [g]it [r]estore [st]aged
+alias grm="${aliases[g]} rm"
+alias grms="${aliases[grm]} --cached"
 alias gc="${aliases[g]} commit"
 alias gca="${aliases[gc]} --amend"
 
@@ -82,14 +85,18 @@ alias gco="${aliases[g]} checkout"
 #-------------------------------------------------------------------------------
 
 alias docker='docker --log-level=error'
-
 alias dco="${aliases[docker]} compose"
+
 alias dcup="${aliases[dco]} up"
 alias dcupd="${aliases[dcup]} -d"
+alias dcrestart="${aliases[dco]} restart"
 alias dcdn="${aliases[dco]} down"
-alias dcl="${aliases[dco]} logs"
-alias dce="${aliases[dco]} exec"
+
 alias dcps="${aliases[dco]} ps"
+alias dcl="${aliases[dco]} logs"
+alias dclf="${aliases[dcl]} --follow"
+
+alias dce="${aliases[dco]} exec"
 
 
 #-------------------------------------------------------------------------------
