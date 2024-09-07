@@ -1,3 +1,3 @@
-local opt = vim.opt_local
+vim.opt_local.expandtab = false
 
-opt.expandtab = false
+vim.b.undo_ftplugin = vim.b.undo_ftplugin .. '|setl expandtab<'

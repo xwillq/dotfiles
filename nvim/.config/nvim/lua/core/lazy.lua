@@ -1,86 +1,38 @@
--------------------------------------------------------------------------------
--- Bootstrap lazy.nvim
--------------------------------------------------------------------------------
-
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
-
--------------------------------------------------------------------------------
--- Install and configure plugins
--------------------------------------------------------------------------------
-
-require("lazy").setup({
-    spec = {
-        { import = "core.plugins" },
-        { import = "lsp.plugins" },
-        { import = "ui.plugins" },
-    },
-    defaults = {
-        -- Don't lazy load plugins, unless specified othervise
-        lazy = false,
-        -- Always use the latest git commit
-        version = false,
-    },
+return {
     install = {
-        -- Install missing plugins on startup
-        missing = true,
-        -- Try to load one of these colorschemes when starting an installation during startup
-        colorscheme = { "material" },
+        colorscheme = { 'material' },
     },
 
+    -- Check for plugin updates automatically
     checker = {
-        -- Automatically check for updates
         enabled = true,
-        -- Don't notify when new updates are found
         notify = false,
-        -- Check for updates every day
-        frequency = 86400,
+        frequency = 86400, -- Every day
+        check_pinned = true,
     },
 
-    performance = {
-        rtp = {
-            -- Disable internal plugins to improve performance
-            -- TODO: disable more plugins
-            disabled_plugins = {
---                "2html_plugin",
---                "tohtml",
---                "getscript",
---                "getscriptPlugin",
---                "gzip",
---                "logipat",
-                "netrw",
-                "netrwPlugin",
-                "netrwSettings",
-                "netrwFileHandlers",
---                "matchit",
---                "tar",
---                "tarPlugin",
---                "rrhelper",
---                "spellfile_plugin",
---                "vimball",
---                "vimballPlugin",
---                "zip",
---                "zipPlugin",
-                "tutor",
---                "rplugin",
---                "syntax",
---                "synmenu",
---                "optwin",
---                "compiler",
---                "bugreport",
---                "ftplugin",
+    change_detection = {
+        notify = false,
+    },
+
+    diff = {
+        cmd = 'diffview.nvim',
+    },
+
+    ui = {
+        backdrop = 100,
+        custom_keys = {
+            ['gf'] = {
+                ---@param plugin LazyPlugin
+                function(plugin)
+                    vim.cmd.cd(plugin.dir)
+                    vim.notify('Changed directory to ' .. plugin.dir)
+                    vim.cmd.close()
+                end,
+                desc = 'cd to plugin directory',
             },
+
+            ['<localleader>l'] = false,
         },
     },
-})
+}

@@ -1,3 +1,11 @@
 local opt = vim.opt_local
 
-opt.colorcolumn = { "50", "72" }
+local textwidth = opt.textwidth:get()
+
+if textwidth > 50 then
+    opt.colorcolumn = { 50, textwidth }
+else
+    opt.colorcolumn = { textwidth }
+end
+
+vim.b.undo_ftplugin = vim.b.undo_ftplugin .. '|setl colorcolumn<'
