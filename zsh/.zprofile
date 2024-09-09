@@ -47,11 +47,6 @@ if [[ -x /opt/homebrew/bin/brew ]]; then
     unset brew_env
 fi
 
-# TODO: stow this files into ~/.local/bin as part of installation
-if [[ -d "$HOME/Environment/bin" ]]; then
-    export PATH="$HOME/Environment/bin:$PATH"
-fi
-
 
 #-------------------------------------------------------------------------------
 # Homebrew configuration
@@ -87,4 +82,13 @@ if (( ${+commands[nvim]} )); then
     export EDITOR="nvim"
 elif (( ${+commands[vim]} )); then
     export EDITOR="vim"
+fi
+
+
+#-------------------------------------------------------------------------------
+# Source machine-specific zprofile
+#-------------------------------------------------------------------------------
+
+if [[ -e "$HOME/.zprofile.local" ]]; then
+    source "$HOME/.zprofile.local"
 fi

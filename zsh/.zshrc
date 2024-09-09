@@ -27,3 +27,11 @@ for config in "$XDG_CONFIG_HOME"/zsh/??-*.zsh; do
     source "$config"
 done
 
+
+#-------------------------------------------------------------------------------
+# Source machine-specific zshrc
+#-------------------------------------------------------------------------------
+
+if [[ -e "$HOME/.zshrc.local" ]]; then
+    source "$HOME/.zshrc.local"
+fi
