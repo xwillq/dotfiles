@@ -1,0 +1,98 @@
+# Taken from ohmyzsh/lib/termsupport.zsh
+
+emulate -L zsh
+setopt extended_glob
+
+
+#-------------------------------------------------------------------------------
+# Parse cmd
+#-------------------------------------------------------------------------------
+# Cmd is passed as arguments, so it is just a string. It's not very convinient
+# to work with, so split it into arrays.
+
+# Command as it appears in the prompt
+local -a cmd=("${(z)1}")
+
+# Real command being run
+local -a realcmd=("${(z)2}")
+
+
+#-------------------------------------------------------------------------------
+# Get real cmd
+#-------------------------------------------------------------------------------
+
+# This list of precommand modifiers should handle everything except `exec -a argv0`
+local -a modifiers=(
+    '*=*'
+    -
+    builtin
+    command
+    exec
+    nocorrect
+    noglob
+    '-*' # Some modifiers have flags
+)
+
+# If running fg, extract the command from the job description
+if [[ "${realcmd[(r)^(${(j:|:)modifiers[@]:#command})]}" = 'fg' ]]; then
+    # Get the job id from the first argument passed to the fg command
+    local job_id
+    local jobspec="${realcmd[(r)^(${(j:|:)modifiers[@]:#command}|fg)]#%}"
+    case "$jobspec" in
+        <->) # %number argument:
+            # use the same <number> passed as an argument
+            job_id=${jobspec} ;;
+        ""|%|+) # empty, %% or %+ argument:
+            # use the current job, which appears with a + in $jobstates:
+            # suspended:+:5071=suspended (tty output)
+            job_id=${(k)jobstates[(r)*:+:*]} ;;
+        -) # %- argument:
+            # use the previous job, which appears with a - in $jobstates:
+            # suspended:-:6493=suspended (signal)
+            job_id=${(k)jobstates[(r)*:-:*]} ;;
+        [?]*) # %?string argument:
+            # use $jobtexts to match for a job whose command *contains* <string>
+            job_id=${(k)jobtexts[(r)*${(Q)jobspec}*]} ;;
+        *) # %string argument:
+            # use $jobtexts to match for a job whose command *starts with* <string>
+            job_id=${(k)jobtexts[(r)${(Q)jobspec}*]} ;;
+    esac
+
+    # Override command with job command
+    if [[ -n "${jobtexts[$job_id]}" ]]; then
+        cmd=("${(z)jobtexts[$job_id]}")
+        realcmd=("${(z)jobtexts[$job_id]}")
+    fi
+fi
+
+# Remove precommand modifiers and variable assignments
+cmd=(${cmd[${cmd[(i)^(${(j:|:)modifiers})]}, -1]})
+realcmd=(${realcmd[${realcmd[(i)^(${(j:|:)modifiers})]}, -1]})
+
+# Remove sudo
+# TODO: handle sudo with arguments
+if [[ "${cmd[1]}" = 'sudo' ]]; then
+    cmd=(${cmd[2, -1]})
+fi
+
+
+#-------------------------------------------------------------------------------
+# Create termtitle based on cmd
+#-------------------------------------------------------------------------------
+
+# Escape all %
+cmd=(${cmd:gs/%/%%})
+
+# Special formats for some commands
+case "${cmd[1]}" in
+    man)
+        echo "${cmd[1]} ${cmd[-1]}"
+        return
+        ;;
+esac
+
+
+# Default format: command - pwd
+echo "${cmd[1]} - %~"
+
+# vim: ft=zsh
