@@ -19,9 +19,6 @@
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
-
-
-
 () {
   emulate -L zsh -o extended_glob
 
@@ -67,6 +64,9 @@
     xdebug_trigger          # whether XDEBUG_TRIGGER is set
     # time                  # current time
     # =========================[ Line #2 ]=========================
+    # Last line of the right prompt is displayed only on transient prompt.
+    # It should contain segments from other prompt parts which are useful
+    # when looking at the command history.
     newline
     command_execution_time  # duration of the last command for transient prompt
     # proxy                 # system-wide http/https/ftp proxy
@@ -665,6 +665,17 @@
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
 
+  ######################[ xdebug_trigger: whether XDEBUG_TRIGGER is set ]#######################
+  function prompt_xdebug_trigger() {
+    if [[ $parameters[XDEBUG_TRIGGER] =~ 'export' ]]; then
+      p10k segment -e -i '' -t '$XDEBUG_TRIGGER'
+    fi
+  }
+
+  # Xdebug trigger color.
+  typeset -g POWERLEVEL9K_XDEBUG_TRIGGER_FOREGROUND=70
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_XDEBUG_TRIGGER_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
@@ -687,6 +698,52 @@
   #              seen the warning, or if you are unsure what this all means.
   typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+
+  function p10k-on-pre-prompt() {
+    # Show decorations around prompt
+    p10k display '*/(left|right)_frame'=show
+    # Show all lines
+    p10k display '<->'=show
+    # Hide right side from last line
+    p10k display '\-1/right'=hide
+  }
+
+  typeset -g _p9k__last_prompt_vcs_head
+
+  function p10k-on-post-prompt() {
+    local trim_prompt=1
+
+    if [[ $_p9k__cwd != $_p9k__last_prompt_pwd ]]; then
+      _p9k__last_prompt_pwd=$_p9k__cwd
+      trim_prompt=0
+    fi
+
+    if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
+      if [[ $VCS_STATUS_LOCAL_BRANCH != $_p9k__last_prompt_vcs_head ]]; then
+        _p9k__last_prompt_vcs_head=$VCS_STATUS_LOCAL_BRANCH
+        trim_prompt=0
+      fi
+    else
+      if [[ $VCS_STATUS_COMMIT != $_p9k__last_prompt_vcs_head ]]; then
+        _p9k__last_prompt_vcs_head=$VCS_STATUS_COMMIT
+        trim_prompt=0
+      fi
+    fi
+
+    if (( ! trim_prompt )); then
+        return
+    fi
+
+    # Hide decorations before prompt
+    p10k display 'empty_line|ruler'=hide
+    # Hide decorations around prompt
+    p10k display '*/(left|right)_frame'=hide 
+    # Hide all lines except last one
+    p10k display '<->'=hide '\-1'=show
+    # Show right side on last line
+    p10k display '\-1/right'=show
+  }
+
   # Hot reload allows you to change POWERLEVEL9K options after Powerlevel10k has been initialized.
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload
   # can slow down prompt by 1-2 milliseconds, so it's better to keep it turned off unless you
@@ -696,38 +753,6 @@
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload
-}
-
-typeset -g _last_prompt_local_branch
-
-function p10k-on-pre-prompt() {
-  p10k display '1'=show '2'=show '2/right/command_execution_time'=hide
-}
-
-function p10k-on-post-prompt() {
-  local trim_prompt=true
-
-  if [[ $_p9k__cwd != $_p9k__last_prompt_pwd ]]; then
-    _p9k__last_prompt_pwd=$_p9k__cwd
-    trim_prompt=false
-  fi
-
-  if [[ $VCS_STATUS_LOCAL_BRANCH != $_last_prompt_local_branch ]]; then
-    _last_prompt_local_branch=$VCS_STATUS_LOCAL_BRANCH
-    trim_prompt=false
-  fi
-
-  if [[ $trim_prompt == true ]]; then
-    p10k display 'empty_line'=hide '1'=hide
-  fi
-
-  p10k display '2/right/command_execution_time'=show
-}
-
-function prompt_xdebug_trigger() {
-  if [[ $parameters[XDEBUG_TRIGGER] =~ 'export' ]]; then
-    p10k segment -t '' -f 70
-  fi
 }
 
 # Tell `p10k configure` which file it should overwrite.
