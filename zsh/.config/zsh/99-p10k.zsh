@@ -35,6 +35,7 @@
     # os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
+    docker_compose          # docker compose status and count of running services
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -676,6 +677,76 @@
   typeset -g POWERLEVEL9K_XDEBUG_TRIGGER_FOREGROUND=70
   # Custom icon.
   # typeset -g POWERLEVEL9K_XDEBUG_TRIGGER_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  
+  ######################[ docker_compose: docker compose project status ]#######################
+  prompt_docker_compose() {
+    p10k segment -e -s UP -c '$_p9k__docker_up' -i '󰡨' -t '$_p9k__docker_compose_services_running/$_p9k__docker_compose_services_total'
+    p10k segment -e -s DOWN -c '$_p9k__docker_down' -i '󰡨'
+  }
+  
+  # Docker compose color.
+  typeset -g POWERLEVEL9K_DOCKER_COMPOSE_UP_FOREGROUND=blue
+  typeset -g POWERLEVEL9K_DOCKER_COMPOSE_DOWN_FOREGROUND=red
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_DOCKER_COMPOSE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  _p9k_prompt_docker_compose_init() {
+    (( ${+commands[docker]} )) || return
+
+    typeset -g _p9k__docker_up=
+    typeset -g _p9k__docker_down=
+    typeset -g _p9k__docker_compose_services_total=
+    typeset -g _p9k__docker_compose_services_running=
+
+    _p9k__async_segments_compute+='_p9k_worker_invoke docker_compose "_p9k_prompt_docker_compose_compute ${(q)_p9k__cwd_a}"'
+  }
+
+  _p9k_prompt_docker_compose_compute() {
+    (( ${+commands[docker]} )) || return
+
+    _p9k_worker_async "_p9k_prompt_docker_compose_async ${(q)1}" _p9k_prompt_docker_compose_sync
+  }
+
+  _p9k_prompt_docker_compose_async() {
+    local compose_cmd="docker --log-level=error compose --project-directory $1"
+    local config ps
+    _p9k__docker_up=
+    _p9k__docker_down=
+  
+
+    # docker compose config fails when there is no config file. This means 
+    # current directory is not a compose project, hide segment.
+    if ! config="$(${(z)compose_cmd} config --services)"; then
+      _p9k_print_params _p9k__docker_up _p9k__docker_down
+      echo -E - 'reset=1'
+      return
+    fi
+    _p9k__docker_compose_services_total=${(w)#config}
+
+    # docker compose config fails when there is no config file or docker daemon
+    # is not running. First condition is handled by previous if, on second 
+    # condition segment will be in a DOWN state to show that docker is not running.
+    if ! ps="$(${(z)compose_cmd} ps --services)"; then
+      _p9k__docker_down=1
+      _p9k_print_params _p9k__docker_up _p9k__docker_down
+      echo -E - 'reset=1'
+      return
+    fi
+    _p9k__docker_compose_services_running=${(w)#ps}
+
+    _p9k__docker_up=1
+
+    _p9k_print_params \
+      _p9k__docker_up _p9k__docker_down \
+      _p9k__docker_compose_services_total _p9k__docker_compose_services_running
+
+    echo -E - 'reset=1'
+  }
+
+  _p9k_prompt_docker_compose_sync() {
+    eval $REPLY
+    _p9k_worker_reply $REPLY
+  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
