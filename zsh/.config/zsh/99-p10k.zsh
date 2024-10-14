@@ -391,7 +391,7 @@
       (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
     elif [[ -n $VCS_STATUS_REMOTE_BRANCH ]]; then
       # Tip: Uncomment the next line to display '=' if up to date with the remote.
-      # res+=" ${clean}="
+      res+=" ${clean}="
     fi
 
     # ⇠42 if behind the push remote.
